@@ -7,10 +7,10 @@ var config = {
 		db: {
 			dbType: 'MySQL',
 			host: 'localhost',
-			user: '',
-			password: '',
-			port: '',
-			database: ''
+			user: 'jasondev',
+			password: 'jasonm23',
+			port: 3306,
+			database: 'node_mvc'
 		},
 		
 	},
