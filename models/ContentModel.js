@@ -5,6 +5,14 @@ var Model = require("./Base"),
 	
 var ContentModel = model.extend{
 	
+	// view model
+	viewModel: {
+		title: null,
+		text: null,
+		type: null
+	},
+	
+	// crud methods
 	insert: function(data, callback) {
 
 	},
