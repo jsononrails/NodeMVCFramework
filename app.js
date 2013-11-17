@@ -1,41 +1,46 @@
+
+/**
+ * Module dependencies.
+ */
+
 var express = require('express'),
-	MemStore = express.session.MemoryStore,
+	http = require('http'), 
+	path = require('path'),
+	config = require('./config')(),
 	app = express(),
-	http = require('http'),
-	config = require('./config')();
-
-var path = require('path'),
-	async = require('async'),
 	exphbs = require('express3-handlebars'),
-	fs = require('fs');
+	Admin = require('./controllers/Admin'),
+	Home = require('./controllers/Home');
 
-	// some environment variables
-	app.set('views', __dirname + '/views');
-	app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-	app.set('view engine', 'handlebars');
-	app.use(express.favicon());
-	app.use(express.logger('dev'));
-	app.use(express.bodyParser());
-	app.use(express.methodOverride());
-	app.use(express.cookieParser('angleiron_cookie'));
-	app.use(express.session({ secret: "keep calm and don't blink", cookie: { maxAge: 1800000}, store: new MemStore() }));
-	app.use(app.router);
-	app.use(express.static(path.join(__dirname, 'public')));
-	app.use(express.compress);	
+// all environments
+// app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(express.cookieParser('mvc-framework'));
+app.use(express.session());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
 
-// dynamically include routes (Controller)
-/*fs.readdirSync('./controllers').forEach(function (file) {
-  if(file.substr(-3) == '.js') {
-      route = require('./controllers/' + file);
-      route.controller(app);
-  }*/
+// development only
+/*if ('development' == app.get('env')) {
+  	app.use(express.errorHandler());
+}*/
+var attachDB = function(req, res, next) {
+//	req.db = db;
+	next();
+};
 
-	// routes
-	var Admin = require('./controllers/Admin');
-	app.all('/admin*', function(req, res, next) {
-		Admin.run(req, res, next);
-	});
-	
-	http.createServer(app).listen(config.port, function() {
-		console.log('Express server listening on port ' + config.port);;
-	});
+app.all('/admin*', attachDB, function(req, res, next) {
+	Admin.run(req, res, next);
+});
+
+http.createServer(app).listen(config.port, function() {
+		  	console.log(
+		  		'Express server listening on port ' + config.port
+		  	);
+});

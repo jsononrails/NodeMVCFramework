@@ -3,32 +3,18 @@
 var Model = require("./Base"),
 	model = new Model();
 	
-var ContentModel = model.extend{
+var ContentModel = model.extend({
+	data: {
+		title: null,
+		description: null,
+		dateCreated: new Date()
+	},
 	
-	// view model
 	viewModel: {
 		title: null,
-		text: null,
-		type: null
+		description: null,
+		dateCreated: null
 	},
-	
-	// crud methods
-	insert: function(data, callback) {
-
-	},
-	
-	update: function(data, callback) {
-		
-	},
-	
-	getlist: function(data, callback) {
-		
-	},
-	
-	remove: function(ID, callback) {
-		
-	}
-	
 });
 
 module.exports = ContentModel;

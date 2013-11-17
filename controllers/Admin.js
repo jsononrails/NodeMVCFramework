@@ -1,6 +1,10 @@
 var BaseController = require("./Base"),
-	View = require("../views/Base");
-
+	View = require("../views/Base"),
+	Model = require("../models/ContentModel");
+	
+	var ContentService = require("../domain/concrete/services/ContentService"),
+		service = new ContentService();
+	
 module.exports = BaseController.extend({
 
 	name: "Admin",
@@ -19,21 +23,18 @@ module.exports = BaseController.extend({
 	},
 	
 	run: function(req, res, next) {
-		if(this.authorize(req)) {
-			req.session.change_this_token = true;
-			req.session.save(function(err) {
-				var view = new View(res, 'admin');
-				view.render({
-					title: 'Administration',
-					content: 'Welcome to the control panel'
-				});
-			});
-		} else {
-			var view = new View(res, 'admin-login');
-			view.render({
-				title: 'Please login'
-			});
-		}
-	}
+		var viewModel = new Model().viewModel;
+		viewModel.title = 'Test Title';
+		console.log(viewModel);
+		service.insert(viewModel, function() {
+			console.log('complete');
+		});
+		
+		var view = new View(res, 'admin');
+		view.render({
+			title: 'Administration',
+			content: 'test'
+		});
+	},
 	
 });
