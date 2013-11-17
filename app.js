@@ -30,6 +30,12 @@ var path = require('path'),
       route.controller(app);
   }*/
 
+	// routes
+	var Admin = require('./controllers/Admin');
+	app.all('/admin*', function(req, res, next) {
+		Admin.run(req, res, next);
+	});
+	
 	http.createServer(app).listen(config.port, function() {
 		console.log('Express server listening on port ' + config.port);;
 	});
