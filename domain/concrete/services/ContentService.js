@@ -1,11 +1,15 @@
 var IContentService = require('../../abstract/services/IContentService');
+var ContentRepository = require("../repositories/ContentRepository");
 
-var ContentService = function() {};
+var ContentService = function() {
+	this.repository = new ContentRepository();
+};
 
 ContentService.prototype = Object.create(IContentService);
 
 ContentService.prototype.insert = function(item, callback) {
-	console.log('Item for insert: ' + item.title);
+	console.log('Content service: methond insert');
+	this.repository.insert(item, callback);
 };	
 
 ContentService.prototype.update = function(item, id, callback) {

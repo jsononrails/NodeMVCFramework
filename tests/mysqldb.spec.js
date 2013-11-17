@@ -1,9 +1,9 @@
 describe("MySQLDB", function(){
 	it("is there a server running", function(next) {
 		var mySQLClient = require('mysql'),
-			local = require('../config')();
+			config = require('../config')();
 		
-		var conn_props = local.db;
+		var conn_props = config.db;
 	
 		var conn = mySQLClient.createConnection({
 			host: conn_props.host,
