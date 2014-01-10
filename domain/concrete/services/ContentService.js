@@ -1,10 +1,8 @@
 var IContentService = require('../../abstract/services/IContentService');
 var ContentRepository = require("../repositories/ContentRepository");
-var DB = require("../../../data/db");
 
 var ContentService = function() {
-	var db = DB;
-	this.repository = new ContentRepository(db);
+	this.repository = new ContentRepository();
 };
 
 ContentService.prototype = Object.create(IContentService);

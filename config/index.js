@@ -5,12 +5,12 @@ var config = {
 		port: 3000,
 		
 		db: {
-			dbType: 'mssql',
+			dbType: 'mysql',
 			host: 'localhost',
-			user: '',
-			password: '',
+			user: 'jasondev',
+			password: 'jasonm23',
 			port: '',
-			database: 'mvc'
+			database: 'node_mvc'
 		},
 		
 	},
