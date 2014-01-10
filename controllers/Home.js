@@ -5,12 +5,19 @@ var HomeController = require("./Base"),
 module.exports = HomeController.extend({
 	name: "Home",
 	run: function(req, res, next) {
+		var self = this;
 		var view = new View(res, 'home');
 		var service = new Service();
-		service.insert("", function() {});
-		view.render({
-			title: 'Home',
-			content: 'Home'
+		var result = null;
+		
+		service.getlist(function(result) {
+			
+			view.render({
+				title: 'Home',
+				content: 'Home',
+				users: result
+			});
+		
 		});
 	}
 });

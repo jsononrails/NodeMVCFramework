@@ -17,7 +17,9 @@ ContentService.prototype.update = function(item, id, callback) {
 };
 
 ContentService.prototype.getlist = function(callback) {
-	
+	this.repository.getlist(function(results, fields) {
+		callback(results);
+	});
 };
 
 ContentService.prototype.get = function(id, callback) {
