@@ -27,15 +27,11 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-/*if ('development' == app.get('env')) {
+if ('development' == app.get('env')) {
   	app.use(express.errorHandler());
-}*/
-var attachDB = function(req, res, next) {
-//	req.db = db;
-	next();
-};
+}
 
-app.all('/admin*', attachDB, function(req, res, next) {
+app.all('/admin*', function(req, res, next) {
 	Admin.run(req, res, next);
 });
 

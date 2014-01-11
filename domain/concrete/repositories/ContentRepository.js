@@ -21,7 +21,10 @@ ContentRepository .prototype.update = function(item, id, callback) {
 	
 };
 
+// gets a list of all content
 ContentRepository .prototype.getlist = function(callback) {
+	
+	// set query
 	self.dbc.query(" \
 		SELECT \
 		 	id, \
@@ -33,7 +36,9 @@ ContentRepository .prototype.getlist = function(callback) {
 		ORDER BY \
 			datecreated DESC", function(err, results, fields) {
 		
+		// check for db error
 		if(!err) {
+			
 			var arrContentModel = [];
 
 			for(var i = 0; i < results.length; i++) {
@@ -58,6 +63,7 @@ ContentRepository .prototype.getlist = function(callback) {
 			callback(err, arrContentModel);
 			
 		} else {
+			
 			// log error to sceen
 			console.log("ERROR! File: ContentRepository.js, Method: getlist(callback), Error Message: " + err);
 			

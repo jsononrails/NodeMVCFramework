@@ -20,11 +20,12 @@ var config = {
 		port: 4000,
 		
 		db: {
-			dbType: 'mssql',
+			dbType: 'mysql',
 			host: 'localhost',
-			user: 'root',
-			password: '',
-			database: 'mvc'
+			user: 'jasondev',
+			password: 'jasonm23',
+			port: '',
+			database: 'node_mvc'
 		},
 		
 	},
@@ -34,11 +35,12 @@ var config = {
 		port: 5000,
 		
 		db: {
-			dbType: 'mssql',
+			dbType: 'mysql',
 			host: 'localhost',
-			user: 'root',
-			password: '',
-			database: 'mvc'
+			user: 'jasondev',
+			password: 'jasonm23',
+			port: '',
+			database: 'node_mvc'
 		},
 	}
 }
