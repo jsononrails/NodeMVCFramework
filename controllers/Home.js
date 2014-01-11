@@ -10,13 +10,13 @@ module.exports = HomeController.extend({
 		var service = new Service();
 		var result = null;
 		
-		service.getlist(function(result) {
-			
-			view.render({
-				title: 'Home',
-				content: 'Home',
-				users: result
-			});
+		service.getlist(function(err, contentViewModels) {
+			if(!err) {
+				view.render({
+					title: 'Home',
+					content: contentViewModels
+				});
+			}
 		
 		});
 	}

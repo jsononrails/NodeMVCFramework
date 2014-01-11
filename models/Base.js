@@ -1,5 +1,5 @@
-module.exports = function(db) {
-	this.db = db;
+module.exports = function() {
+
 };
 
 module.exports.prototype = {
@@ -13,11 +13,5 @@ module.exports.prototype = {
         }
         
 		return Child;
-	},
-	
-	setDB: function(db) {
-		this.db = db;
 	}
-	
-	// other db calls here
 }
