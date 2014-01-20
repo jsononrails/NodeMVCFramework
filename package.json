@@ -1,14 +1,16 @@
 {
-  "name": "Basic_MVC_Framework",
-  "description": "Basic MVC Framework based on http://net.tutsplus.com/tutorials/javascript-ajax/build-a-complete-mvc-web-site-with-expressjs/",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {
-    "async": "0.1.x",
-    "express": "3.x",
-	"express3-handlebars": ">= 0.5.0",
-	"underscore": "1.x",
-	"mysql": "2.x",
-	"mssql": " x"
-  }
+    "name": "Basic_MVC_Framework",
+    "description": "Basic MVC Framework based on http://net.tutsplus.com/tutorials/javascript-ajax/build-a-complete-mvc-web-site-with-expressjs/",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": 
+    {
+      "async": "0.1.x",
+      "express": "3.x",
+      "express3-handlebars": ">= 0.5.0",
+      "underscore": "1.x",
+      "mysql": "2.x",
+      "mssql": " x",
+      "jasmine-node": " x"
+    }
 }

@@ -5,7 +5,7 @@ var config = {
 		port: 3000,
 		
 		db: {
-			dbType: 'mysql',
+			dbType: 'MySQL',
 			host: '127.0.0.1',
 			user: 'root',
 			//password: 'jasonm23',
@@ -20,7 +20,7 @@ var config = {
 		port: 4000,
 		
 		db: {
-			dbType: 'mysql',
+			dbType: 'MySQL',
 			host: 'localhost',
 			user: 'jasondev',
 			password: 'jasonm23',
@@ -35,7 +35,7 @@ var config = {
 		port: 5000,
 		
 		db: {
-			dbType: 'mysql',
+			dbType: 'MySQL',
 			host: 'localhost',
 			user: 'jasondev',
 			password: 'jasonm23',
