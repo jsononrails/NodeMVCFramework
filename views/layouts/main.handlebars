@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 </head>
 
 <body>
     {{ title }}
-	
+	<div class="display-error">
+    <img src="/images/error.png" alt="error" />
+    {{error}}
+  </div>
 	<ul>
 		{{#content}}  
 	 		<li>Id: {{ id }}, Title: {{ title }}, Description: {{ description }}, Date Created: {{ datecreated }} </li>

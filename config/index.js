@@ -6,11 +6,11 @@ var config = {
 		
 		db: {
 			dbType: 'mysql',
-			host: 'localhost',
-			user: 'jasondev',
-			password: 'jasonm23',
-			port: '',
-			database: 'node_mvc'
+			host: '127.0.0.1',
+			user: 'root',
+			//password: 'jasonm23',
+			//port: '',
+			database: 'one13_dev'
 		},
 		
 	},

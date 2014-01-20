@@ -17,6 +17,13 @@ module.exports = HomeController.extend({
 					content: contentViewModels
 				});
 			}
+      else {
+        view.render({
+          title: 'Home - Error',
+          error: err,
+          content: null
+        });
+      }
 		
 		});
 	}
