@@ -9,6 +9,7 @@ var express = require('express'),
 	config = require('./config')(),
 	app = express(),
 	exphbs = require('express3-handlebars'),
+  compressor = require('node-minify'),
 	Admin = require('./controllers/Admin'),
 	Home = require('./controllers/Home');
 
@@ -39,8 +40,41 @@ app.all('/', function (req, res, next) {
     Home.run(req, res, next);
 });
 
-http.createServer(app).listen(config.port, function() {
-		  	console.log(
-		  		'Express server listening on port ' + config.port
-		  	);
+// compress and concat css
+console.log('Compressing CSS files');
+new compressor.minify({
+    type: 'sqwish',
+    fileIn: ['public/css/site.css', 'public/css/text.css'],
+    fileOut: 'public/css/main-min.css',
+    callback: function(err, min){
+        
+        if(!err) {
+            console.log("CSS compression complete");
+        } else {
+          console.log(err);
+        }
+      
+        // compress and concat js
+        console.log("Compressing JavaScript files");
+        new compressor.minify({
+            type: 'gcc',
+            fileIn: ['public/js/site.js',],
+            fileOut: 'public/js/main-min.js',
+            callback: function(err, min){
+                
+                if(!err) {
+                  console.log("JavaScript compression complete");
+                } else {
+                  console.log(err);
+                }
+                  
+                // start server
+                http.createServer(app).listen(config.port, function() {
+                  console.log(
+                    'Server listening on port ' + config.port
+                  );
+                });
+            }
+        });
+    }
 });

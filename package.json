@@ -1,6 +1,6 @@
 {
-    "name": "Basic_MVC_Framework",
-    "description": "Basic MVC Framework based on http://net.tutsplus.com/tutorials/javascript-ajax/build-a-complete-mvc-web-site-with-expressjs/",
+    "name": "My_MVC_Framework",
+    "description": "MVC Framework with Repository Pattern",
     "version": "0.0.1",
     "private": true,
     "dependencies": 
@@ -11,6 +11,7 @@
       "underscore": "1.x",
       "mysql": "2.x",
       "mssql": " x",
-      "jasmine-node": " x"
+      "jasmine-node": " x",
+      "node-minify": " x"
     }
 }
