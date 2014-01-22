@@ -27,15 +27,15 @@ ContentRepository.prototype.getlist = function(callback) {
 	// set query
 	self.dbc.query(" \
 		SELECT \
-		 	id, \
+		 	contentId, \
 			title,\
 			description, \
-			datecreated \
+			dateCreated \
 		FROM \
-			content \
+			CONTENT \
 		ORDER BY \
-			datecreated DESC", function(err, results, fields) {
-		
+			dateCreated DESC", function(err, results, fields) {
+
 		// check for db error
 		if(!err) {
 			
@@ -47,10 +47,10 @@ ContentRepository.prototype.getlist = function(callback) {
 				var model = self.model.Data();
 				
 				// set model values from results
-				model.id = results[i].id;
+				model.id = results[i].content_id;
 				model.title = results[i].title;
 				model.description = results[i].description;
-				model.datecreated = results[i].datecreated;
+				model.dateCreated = results[i].dateCreated;
 				
 				// create list of content model
 				arrContentModel.push(model);

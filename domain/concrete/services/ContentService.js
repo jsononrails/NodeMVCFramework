@@ -33,7 +33,7 @@ ContentService.prototype.getlist = function(callback) {
 				viewModel.id = modelData[i].id;
 				viewModel.title = modelData[i].title;
 				viewModel.description = modelData[i].description;
-				viewModel.datecreated = modelData[i].datecreated;
+				viewModel.dateCreated = modelData[i].dateCreated;
 				
 				arrContentViewModel.push(viewModel);
 			}

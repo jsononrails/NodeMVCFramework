@@ -17,15 +17,13 @@ DatabaseSetupRepository.prototype.createTables = function(callback) {
 	
 	// set query
 	self.dbc.query(" \
-		SELECT \
-		 	id, \
-			title,\
-			description, \
-			datecreated \
-		FROM \
-			content \
-		ORDER BY \
-			datecreated DESC", function(err, results) {
+        CREATE TABLE CONTENT( \
+        contentId INT NOT NULL AUTO_INCREMENT, \
+        title VARCHAR(100) NOT NULL, \
+        description VARCHAR(5000), \
+        dateCreated DATE, \
+        PRIMARY KEY ( contentId ));"
+, function(err, results) {
 		
 		// check for db error
 		if(!err) {

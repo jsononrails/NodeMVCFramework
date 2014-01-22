@@ -33,6 +33,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // development only
 if ('development' == app.get('env')) {
   	app.use(express.errorHandler());
+  
+    // start server
+    http.createServer(app).listen(config.port, function() {
+        console.log('Server listening on port ' + config.port);
+    });
 }
 
 app.all('/admin*', function(req, res, next) {
@@ -47,41 +52,43 @@ app.all('/', function (req, res, next) {
     Home.run(req, res, next);
 });
 
-// compress and concat css
-console.log('Compressing CSS files');
-new compressor.minify({
-    type: 'sqwish',
-    fileIn: ['public/css/site.css', 'public/css/text.css'],
-    fileOut: 'public/css/main-min.css',
-    callback: function(err, min){
-        
-        if(!err) {
-            console.log("CSS compression complete");
-        } else {
-          console.log(err);
-        }
-      
-        // compress and concat js
-        console.log("Compressing JavaScript files");
-        new compressor.minify({
-            type: 'gcc',
-            fileIn: ['public/js/site.js',],
-            fileOut: 'public/js/main-min.js',
-            callback: function(err, min){
-                
-                if(!err) {
-                  console.log("JavaScript compression complete");
-                } else {
-                  console.log(err);
-                }
-                  
-                // start server
-                http.createServer(app).listen(config.port, function() {
-                  console.log(
-                    'Server listening on port ' + config.port
-                  );
-                });
+if ('production' == app.get('env')) {
+    // compress and concat css
+    console.log('Compressing CSS files');
+    new compressor.minify({
+        type: 'sqwish',
+        fileIn: ['public/css/site.css', 'public/css/text.css'],
+        fileOut: 'public/css/main-min.css',
+        callback: function(err, min){
+            
+            if(!err) {
+                console.log("CSS compression complete");
+            } else {
+              console.log(err);
             }
-        });
-    }
-});
+          
+            // compress and concat js
+            console.log("Compressing JavaScript files");
+            new compressor.minify({
+                type: 'gcc',
+                fileIn: ['public/js/site.js',],
+                fileOut: 'public/js/main-min.js',
+                callback: function(err, min){
+                    
+                    if(!err) {
+                      console.log("JavaScript compression complete");
+                    } else {
+                      console.log(err);
+                    }
+                      
+                    // start server
+                    http.createServer(app).listen(config.port, function() {
+                      console.log(
+                        'Server listening on port ' + config.port
+                      );
+                    });
+                }
+            });
+        }
+    });
+}
