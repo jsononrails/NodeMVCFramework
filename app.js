@@ -10,8 +10,11 @@ var express = require('express'),
 	app = express(),
 	exphbs = require('express3-handlebars'),
   compressor = require('node-minify'),
+    
+  // link controllers
 	Admin = require('./controllers/Admin'),
-	Home = require('./controllers/Home');
+	Home = require('./controllers/Home'),
+  Setup = require('./controllers/Setup');
 
 // all environments
 // app.set('port', process.env.PORT || 3000);
@@ -34,6 +37,10 @@ if ('development' == app.get('env')) {
 
 app.all('/admin*', function(req, res, next) {
 	Admin.run(req, res, next);
+});
+
+app.all('/setup/database/createtables*', function(req, res, next) {
+	Setup.createTables(req, res, next);
 });
 
 app.all('/', function (req, res, next) {

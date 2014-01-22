@@ -22,7 +22,7 @@ ContentRepository .prototype.update = function(item, id, callback) {
 };
 
 // gets a list of all content
-ContentRepository .prototype.getlist = function(callback) {
+ContentRepository.prototype.getlist = function(callback) {
 	
 	// set query
 	self.dbc.query(" \
@@ -75,7 +75,7 @@ ContentRepository .prototype.getlist = function(callback) {
 	});
 };
 
-ContentRepository .prototype.closeConnection = function() {
+ContentRepository.prototype.closeConnection = function() {
 	self.dbc.end();
 };
 
@@ -88,7 +88,7 @@ ContentRepository .prototype.delete = function(id, callback) {
 };
 
 
-ContentRepository .prototype.callback = function(cb) {
+ContentRepository.prototype.callback = function(cb) {
 	self.dbContext.db(cb);
 };
 
