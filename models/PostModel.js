@@ -16,7 +16,7 @@ var PostModel = model.extend({
 	
   fromDelimitedString: function(string) {
       var pieces = string.split('|');
-      return new Post(parts[1],parts[2],parts[3],parts[5],parts[4],parts[0]);
+      return new this.Post(pieces[0],pieces[1],pieces[2],pieces[3],pieces[4],pieces[5]);
   },
  
   fromString: function(string) {
