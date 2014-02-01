@@ -5,9 +5,9 @@ module.exports = function() {
 module.exports.prototype = {
 	
 	extend: function(properties) {
-		var Child = module.exports;
+    var Child = function(){};
 	    
-		Child.prototype = module.exports.prototype;
+		Child.prototype = new module.exports();
         for(var key in properties) {
             Child.prototype[key] = properties[key];
         }
