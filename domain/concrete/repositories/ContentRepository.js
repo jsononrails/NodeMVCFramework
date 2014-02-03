@@ -1,8 +1,7 @@
-var IContentRepository = require('../../abstract/repositories/IContentRepository');
-var DB = require("../../../data/db");
-var model = new(require("../../../models/ContentModel"));
-var post = new(require("../../../models/PostModel"));
-var self;
+var IContentRepository = require('../../abstract/repositories/IContentRepository'),
+    DB = require("../../../data/db"),
+    model = new(require("../../../models/ContentModel")),
+    self;
 
 var ContentRepository  = function() {
 	self = this;

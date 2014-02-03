@@ -10,6 +10,7 @@ var express = require('express'),
 	app = express(),
 	exphbs = require('express3-handlebars'),
   compressor = require('node-minify'),
+  crypto = require('crypto'),
     
   // link controllers
 	Admin = require('./controllers/Admin'),
