@@ -11,6 +11,7 @@
       "underscore": "1.x",
       "mysql": "2.x",
       "mssql": " x",
+      "redis": " x",
       "jasmine-node": " x",
       "node-minify": " x"
     }
