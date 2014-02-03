@@ -1,23 +1,22 @@
-var Model = require ("../models/Base"),
-	dbMockup = {};
+var Model = require ("../models/Base");
 
 describe("Models", function() {
 	
 	it("should create a new model", function(next) {
-		var model = new Model(dbMockup);
-		expect(model.db).toBeDefined();
+		var model = new Model();
+		expect(model).toBeDefined();
 		expect(model.extend).toBeDefined();
 		next();
 	});
 	
 	it("should be extendable", function(next) {
-		var model = new Model(dbMockup);
+		var model = new Model();
 		var OtherTypeOfModel = model.extend({
 			myCustomModelMethod: function() {}
 		});
 		
-		var model2 = new OtherTypeOfModel(dbMockup);
-		expect(model2.db).toBeDefined();
+		var model2 = new OtherTypeOfModel();
+		expect (model2).toBeDefined();
 		expect(model2.myCustomModelMethod).toBeDefined();
 		next();
 	});
