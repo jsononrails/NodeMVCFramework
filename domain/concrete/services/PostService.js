@@ -12,9 +12,13 @@ var PostService = function() {
 PostService.prototype = Object.create(IPostService);
 
 PostService.prototype.insert = function(item, callback) {
-	console.log('Post service: methond insert');
-	self.repository.insert(item, callback);
-};	
+    self.repository.insert(item, function(err) {
+      if(err) {
+        console.log("ERROR! File: PostService.js, Method: insert(item, callback), Error Message: " + err);
+			  callback(err);
+      }
+    });
+};
 
 PostService.prototype.update = function(item, id, callback) {
 	
