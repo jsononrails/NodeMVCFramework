@@ -14,9 +14,12 @@ PostRepository .prototype = Object.create(IPostRepository);
 PostRepository .prototype.insert = function(item, callback) {
   var userid = 1,
       status = item.replace(/\n/g, " "),
-      post = [userid, Date.now(), status].join("|");
+      post = [userid, Date.now(), status].join("|"),
+      newPostId = null;
   
   self.dbc.incr("global:nextPostId", function(err, postid) {
+    newPostId = postid;
+    
     self.dbc.set("post:" + postid, post);
     self.dbc.smembers("uid:" + userid + ":followers", function(err, followers) {
       if(!followers) {
@@ -30,7 +33,7 @@ PostRepository .prototype.insert = function(item, callback) {
       self.dbc.ltrim("global:timeline", 0, 1000);
     });
   }); 
-  callback(err);
+  callback(err, newPostId);
 };	
 
 PostRepository .prototype.update = function(item, id, callback) {
