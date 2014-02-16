@@ -23,8 +23,7 @@ ContentRepository .prototype.update = function(item, id, callback) {
 
 // gets a list of all content
 ContentRepository.prototype.getlist = function(callback) {
-  var postData = post.fromString("23|1|jsononrails|this is my first post|12:00:00:00pm|1");
-  console.log(postData);
+
 	// set query
 	self.dbc.query(" \
 		SELECT \

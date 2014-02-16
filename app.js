@@ -14,6 +14,7 @@ var express = require('express'),
     
   // link controllers
 	Admin = require('./controllers/Admin'),
+  Post = require('./controllers/Post'),
 	Home = require('./controllers/Home'),
   Setup = require('./controllers/Setup');
 
@@ -43,6 +44,10 @@ if ('development' == app.get('env')) {
 
 app.all('/admin*', function(req, res, next) {
 	Admin.run(req, res, next);
+});
+
+app.all('/post/insert', function(req, res, next) {
+  Post.insert(req, res, next);
 });
 
 app.all('/setup/database/createtables*', function(req, res, next) {

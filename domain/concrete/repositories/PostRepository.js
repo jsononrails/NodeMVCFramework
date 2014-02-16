@@ -1,4 +1,5 @@
-var postModel = new(require("../../../models/PostModel")),
+var IPostRepository = require('../../abstract/repositories/IPostRepository'),
+    postModel = new(require("../../../models/PostModel")),
     redisClient = require("../../../data/redis"),
     self;
 
@@ -37,7 +38,8 @@ PostRepository .prototype.insert = function(item, callback) {
 };	
 
 PostRepository .prototype.update = function(item, id, callback) {
-	
+	 //var postData = post.fromString("23|1|jsononrails|this is my first post|12:00:00:00pm|1");
+  //console.log(postData);
 };
 
 // gets a list of all posts
@@ -46,19 +48,19 @@ PostRepository.prototype.getlist = function(callback) {
   console.log(postData);
 };
 
-ContentRepository.prototype.closeConnection = function() {
+PostRepository.prototype.closeConnection = function() {
 	self.dbc.end();
 };
 
-ContentRepository .prototype.get = function(id, callback) {
+PostRepository .prototype.get = function(id, callback) {
 	
 };
 
-ContentRepository .prototype.delete = function(id, callback) {
+PostRepository .prototype.delete = function(id, callback) {
 	
 };
 
 
-ContentRepository.prototype.callback = function(cb) {
+PostRepository.prototype.callback = function(cb) {
 	self.dbContext.db(cb);
 };
