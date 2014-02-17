@@ -5,24 +5,53 @@ var Model = require("./Base"),
 	
 var PostModel = model.extend({
   
-	 Post: function(pid,uid,username,body,time,version) {
+	 Post: function(pid,uid,username,status,time,version, validate_function) {
      this.id       = pid;
      this.uid      = uid;
      this.username = username;
-     this.body     = body;
+     this.status     = status;
      this.time     = time;
      this.version  = version;
+     this.validate = validate_function;
   },
 	
-  fromDelimitedString: function(string) {
+  Post: function(status, validate_function) {
+    this.status = status;
+    this.validate = validate_function;
+  },
+  
+  new_post: function(status) {
+    return new this.Post(status, this.Validate);
+  },
+  
+  from_deliminited_string: function(string) {
       var pieces = string.split('|');
       return new this.Post(pieces[0],pieces[1],pieces[2],pieces[3],pieces[4],pieces[5]);
   },
  
-  fromString: function(string) {
+  from_string: function(string) {
      return this.fromDelimitedString(string);
   },
 	
+  Validate: function(callback) {
+    errors = [];
+    
+    // post cannot be empty
+    if(this.status.length == 0) {
+      errors.push("empty status");
+    }
+    
+    // post cannot exceed 150 characters
+    if(this.status.length > 150) {
+      errors.push("status exceeds 150 character limit");
+    }
+    
+    if(errors.length == 0)
+       errors = null;
+       
+    callback(errors);
+  },
+  
   elapsed: function (t) {
     var d = Date.now() -t;
     
