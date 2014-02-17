@@ -9,6 +9,7 @@ module.exports = BaseController.extend({
 
 	name: "Admin",
 	
+  // authorize action for admin login
 	authorize: function(req) {
 		return(
 				req.session &&
@@ -22,7 +23,8 @@ module.exports = BaseController.extend({
 				);
 	},
 	
-	run: function(req, res, next) {
+  // index action for admin splash page
+	index: function(req, res, next) {
 		var viewModel = new Model().viewModel;
 		viewModel.title = 'Test Title';
 		console.log(viewModel);

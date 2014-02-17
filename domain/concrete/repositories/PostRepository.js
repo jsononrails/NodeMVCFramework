@@ -7,7 +7,7 @@ var IPostRepository = require('../../abstract/repositories/IPostRepository'),
 var PostRepository  = function() {
 	self = this;
 	self.dbc = redisClient;
-	self.model = model;
+	self.model = postModel;
 };
 
 PostRepository .prototype = Object.create(IPostRepository);
@@ -64,3 +64,5 @@ PostRepository .prototype.delete = function(id, callback) {
 PostRepository.prototype.callback = function(cb) {
 	self.dbContext.db(cb);
 };
+
+module.exports = PostRepository;

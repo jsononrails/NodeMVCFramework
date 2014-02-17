@@ -43,7 +43,7 @@ if ('development' == app.get('env')) {
 }
 
 app.all('/admin*', function(req, res, next) {
-	Admin.run(req, res, next);
+	Admin.Index(req, res, next);
 });
 
 app.all('/post/insert', function(req, res, next) {
@@ -55,7 +55,7 @@ app.all('/setup/database/createtables*', function(req, res, next) {
 });
 
 app.all('/', function (req, res, next) {
-    Home.run(req, res, next);
+    Home.index(req, res, next);
 });
 
 if ('production' == app.get('env')) {

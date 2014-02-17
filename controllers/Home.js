@@ -4,13 +4,19 @@ var HomeController = require("./Base"),
 	
 module.exports = HomeController.extend({
 	name: "Home",
-	run: function(req, res, next) {
+  
+  // index action for home
+	index: function(req, res, next) {
 		var self = this;
 		var view = new View(res, 'home');
 		var service = new Service();
 		var result = null;
 		
-		service.getlist(function(err, contentViewModels) {
+    view.render({
+      title: 'Home Sweet Home'});
+    
+    // modify below after for handling data
+		/*service.getlist(function(err, contentViewModels) {
 			if(!err) {
 				view.render({
 					title: 'Home',
@@ -25,6 +31,6 @@ module.exports = HomeController.extend({
         });
       }
 		
-		});
+		});*/
 	}
 });
