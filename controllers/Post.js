@@ -23,7 +23,7 @@ module.exports = PostController.extend({
     
     function post_callback(req, res, user) {
       if ( !user ) {
-        res.locals.messages = ["error", "User not logged in..."];
+        req.session.messages = [["error", "User not logged in..."], ["error", "User not logged in2..."]];
         console.log(res.locals.messages);
         return res.redirect('/');
       }

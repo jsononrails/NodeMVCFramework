@@ -10,9 +10,9 @@
 	<div class="display-error">
     <img src="/images/error.png" alt="error" height="32" width="32" />
     {{error}}
-    {{#res.locals.messages}}
-    fdsfsdfds
-    {{/res.locals.messages}}  
+    {{#messages}}
+      {{[1]}} <br />
+    {{/messages}}
   </div>
 	<ul>
 		{{#content}}  

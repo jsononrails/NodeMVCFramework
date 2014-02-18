@@ -28,7 +28,11 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('mvc-framework'));
-app.use(express.session());
+
+app.use(express.session({
+  secret: 'gtw-secret-key'
+}));
+
 // flash messages
 app.use(function(req, res, next) {
   res.locals.messages = req.session.messages;
