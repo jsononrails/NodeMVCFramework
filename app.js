@@ -29,6 +29,12 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('mvc-framework'));
 app.use(express.session());
+// flash messages
+app.use(function(req, res, next) {
+  res.locals.messages = req.session.messages;
+  next();
+});
+
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -41,6 +47,8 @@ if ('development' == app.get('env')) {
         console.log('Server listening on port ' + config.port);
     });
 }
+
+
 
 app.all('/admin*', function(req, res, next) {
 	Admin.Index(req, res, next);

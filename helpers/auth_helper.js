@@ -1,16 +1,15 @@
 var Service = require("../domain/concrete/services/AuthService.js");
 
 var AuthHelper = function() {
-  var self = this,
-      self.service = new Service();
+      this.service = new Service();
 };
 
 AuthHelper.prototype.get_current_user = function(req, res, callback) {
   var auth_cookie = req.cookies.auth;
   
   if(!auth_cookie) {
-    console.log("no auth cookie; user not logged in");
-    return callback(req, res, null);
+    console.log("no auth cookie user not logged in");
+    return callback(req, res);
   }
   
   // call service

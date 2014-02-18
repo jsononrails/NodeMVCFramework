@@ -1,12 +1,10 @@
 var IAuthService = require('../../abstract/services/IAuthService'),
     AuthRepository = require("../repositories/AuthRepository"),
-    model = new (require("../../../models/AuthModel")),
     self;
 
 var AuthService = function() {
 	self = this;
 	self.repository = new AuthRepository();
-	self.model = model;
 };
 
 AuthService.prototype = Object.create(IAuthService);

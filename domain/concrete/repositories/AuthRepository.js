@@ -23,7 +23,6 @@ AuthRepository.prototype.get_current_user = function(auth_cookie, callback) {
       err.push("No user_id for cookie found");
       this.closeConnection();
       
-      console.log("ERROR! File: AuthRepository.js, Method: get_current_user, Error Message: " + err[0]);
       return callback(err, null);
     }
     

@@ -16,14 +16,16 @@ module.exports = PostController.extend({
    
     
     // get current user maybe move this to a helper?
-    return sel.authHelper.get_current_user(req, res, post_callback);
+    return self.authHelper.get_current_user(req, res, post_callback);
     
     // handle post insert thru repo pattern
     // but do user auth check via controller 
     
     function post_callback(req, res, user) {
       if ( !user ) {
-        return res.redirect('/home');
+        res.locals.messages = ["error", "User not logged in..."];
+        console.log(res.locals.messages);
+        return res.redirect('/');
       }
       console.log(user);
     }
