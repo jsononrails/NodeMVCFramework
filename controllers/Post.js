@@ -1,6 +1,6 @@
 var PostController = require("./Base"),
-	View = require("../views/Base"),
-	Service = require("../domain/concrete/services/PostService.js"),
+    View = require("../views/Base"),
+	  Service = require("../domain/concrete/services/PostService.js"),
     PostModel = new (require("../models/PostModel"));
 
 module.exports = PostController.extend({
@@ -14,9 +14,9 @@ module.exports = PostController.extend({
         view = new View(res, 'home'),
         result = null;
    
-    /*
+    
     // get current user maybe move this to a helper?
-    return get_current_user(req, res, post_callback);
+    return sel.authHelper.get_current_user(req, res, post_callback);
     
     // handle post insert thru repo pattern
     // but do user auth check via controller 
@@ -27,7 +27,7 @@ module.exports = PostController.extend({
       }
       console.log(user);
     }
-    */
+    
     
     var post_status = self.requestHelper.get_argument(req, 'status', ""),//.replace("\n","");
         modelData = PostModel.new_post(post_status);
