@@ -16,6 +16,7 @@ var express = require('express'),
 	Admin = require('./controllers/Admin'),
   Post = require('./controllers/Post'),
 	Home = require('./controllers/Home'),
+  Account = require('./controllers/Account'),
   Setup = require('./controllers/Setup');
 
 // all environments
@@ -56,6 +57,10 @@ if ('development' == app.get('env')) {
 
 app.all('/admin*', function(req, res, next) {
 	Admin.Index(req, res, next);
+});
+
+app.all('/account/signup', function(req, res, next) {
+  Account.signup(req, res, next);
 });
 
 app.all('/post/insert', function(req, res, next) {
