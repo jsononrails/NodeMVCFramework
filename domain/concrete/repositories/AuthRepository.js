@@ -1,41 +1,21 @@
 var IAuthRepository = require('../../abstract/repositories/IAuthRepository'),
     userModel = new(require("../../../models/UserModel")),
-    redisClient = require("../../../data/redis"),
+	DB = require("../../../data/db"),
     self;
 
 
 var AuthRepository  = function() {
 	self = this;
-	self.dbc = redisClient;
-	self.model = userModel;
+	DB.db(function(something, connection) {
+		self.dbc = connection;
+		self.model = userModel;
+	});
 };
 
 AuthRepository.prototype = Object.create(IAuthRepository);
 
 AuthRepository.prototype.get_current_user = function(auth_cookie, callback) {
-  var user,
-      username;
-  
-  self.dbc.get("gtw:auth:" + auth_cookie, function(err, result) {
-    var user_id = result;
-    
-    if(!user_id) {
-      err.push("No user_id for cookie found");
-      this.closeConnection();
-      
-      return callback(err, null);
-    }
-    
-    self.dbc.get("gtw:uid:" + user_id + ":username", function(err, result) {
-      username = result;
-      this.closeConnection();
-      
-      // create user model and assign values
-      user = self.model.fromString([user_id, username].join("|"));
-      
-      return callback(err, user);
-    });
-  });
+  console.log("AuthRepository: get_current_user");
 };	
 
 AuthRepository.prototype.closeConnection = function() {
