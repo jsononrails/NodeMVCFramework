@@ -1,18 +1,26 @@
 {
     "name": "My_MVC_Framework",
+	"author": "Jason McBride",
     "description": "MVC Framework with Repository Pattern",
     "version": "0.0.1",
     "private": true,
     "dependencies": 
     {
-      "async": "0.1.x",
-      "express": "3.x",
-      "express3-handlebars": ">= 0.5.0",
-      "underscore": "1.x",
-      "mysql": "2.x",
-      "mssql": " x",
-      "redis": " x",
-      "jasmine-node": " x",
-      "node-minify": " x"
+      "async": "~0.8.0",
+      "express": "~4.1.1",
+      "express3-handlebars": "~0.5.0",
+	  "static-favicon": "~1.0.0",
+	  "morgan": "~1.0.0",
+	  "body-parser": "~1.0.0",
+	  "method-override": "~1.0.0",
+      "cookie-parser": "~1.0.1",
+      "express-session": "~x",
+	  "errorhandler": "~x",
+	  "underscore": "~1.6",
+      "mysql": "~2.2.0",
+      "mssql": "~0.5.3",
+      "redis": "~0.10.1",
+      "jasmine-node": "~1.14.3",
+      "node-minify": "~0.10.3"
     }
 }

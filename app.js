@@ -3,34 +3,41 @@
  * Module dependencies.
  */
 
-var express = require('express'),
-	http = require('http'), 
-	path = require('path'),
-	config = require('./config')(),
-	app = express(),
-	exphbs = require('express3-handlebars'),
-  compressor = require('node-minify'),
-  crypto = require('crypto'),
-    
+var express 		= require('express'),
+	http 			= require('http'), 
+	path 			= require('path'),
+	config 			= require('./config')(),
+	app 			= express(),
+	exphbs 			= require('express3-handlebars'),
+  	compressor 		= require('node-minify'),
+  	crypto			= require('crypto'),
+    favicon 		= require('static-favicon'),
+	logger 			= require('morgan'),
+	bodyParser 		= require('body-parser'),
+    methodOverride 	= require('method-override'),
+	cookieParser 	= require('cookie-parser'),
+	session			= require('express-session'),
+	errorHandler	= require('errorhandler');
+
   // link controllers
 	Admin = require('./controllers/Admin'),
-  Post = require('./controllers/Post'),
+  	Post = require('./controllers/Post'),
 	Home = require('./controllers/Home'),
-  Account = require('./controllers/Account'),
-  Setup = require('./controllers/Setup');
+  	Account = require('./controllers/Account'),
+  	Setup = require('./controllers/Setup');
 
 // all environments
 // app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.cookieParser('mvc-framework'));
+app.use(favicon());
+app.use(logger('dev'));
+app.use(bodyParser());
+app.use(methodOverride());
+app.use(cookieParser('mvc-framework'));
 
-app.use(express.session({
+app.use(session({
   secret: 'gtw-secret-key'
 }));
 
@@ -40,20 +47,17 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  	app.use(express.errorHandler());
+  	app.use(errorHandler());
   
     // start server
     http.createServer(app).listen(config.port, function() {
         console.log('Server listening on port ' + config.port);
     });
 }
-
-
 
 app.all('/admin*', function(req, res, next) {
 	Admin.Index(req, res, next);
