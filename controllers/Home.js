@@ -12,11 +12,11 @@ module.exports = HomeController.extend({
 		var service = new Service();
 		var result = null;
 	
-	service.getUsers(function(err, contentViewModels) {
+	service.getUsers(function(err, usersViewModel) {
 			if(!err) {
 				view.render({
 					title: 'Home',
-					content: usersViewModel
+					users: usersViewModel
 				});
 			}
     		else {

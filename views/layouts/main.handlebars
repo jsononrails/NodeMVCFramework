@@ -8,17 +8,18 @@
 <body>
 <a href="/account/login">Login</a> | <a href="/account/signup">Sign Up</a>
     <h1>{{ title }}</h1>
+	{{#if messages}}
 	<div class="display-error">
-    <img src="/images/error.png" alt="error" height="32" width="32" />
-    {{error}}
-    {{#messages}}
-      {{[1]}} <br />
-    {{/messages}}
-  </div>
+    	<img src="/images/error.png" alt="error" height="32" width="32" />
+    	{{#messages}}
+      		{{[1]}} <br />
+    	{{/messages}}
+  	</div>
+	{{/if}}
 	<ul>
-		{{#content}}  
-	 		<li>Id: {{ id }}, Title: {{ title }}, Description: {{ description }}, Date Created: {{ datecreated }} </li>
-	    {{/content}}
+		{{#users}}  
+	 		<li>Id: {{ user_id }}, Username: {{ username }} </li>
+	    {{/users}}
 	</ul>	
 	{{{ body }}}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

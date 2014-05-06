@@ -12,23 +12,23 @@ var HomeService = function() {
 HomeService.prototype = Object.create(IHomeService);
 
 HomeService.prototype.getUsers = function(callback) {
+	
 	self.repository.getUsers(function(err, result) {
-		
+
 		// check for errors
 		if(!err) {
 			var arrUserViewModel = [];
-			for(var i = 0; i< result.length; i++) {
+			for(var i = 0; i< result.rows.length; i++) {
 				
 				// handle passing data to viewModel
-				
-				// arrPostViewModel.push(viewModel);
+				arrUserViewModel.push(result.rows[i]);
 			}
 			
 			// pass view model on to controller
 			callback(err, arrUserViewModel);
 			
 		} else {
-			console.log("ERROR! File: HomeService.js, Method: getUsers(callback), Error Message: " + err);
+			console.log("ERROR! File: HomeService.js, Method: getUsers, Error Message: " + err);
 			callback(err, null);
 		}
 	});
