@@ -1,4 +1,9 @@
 var config = {
+	pg: {
+		mode: 'local',
+		port: 3200,
+		connString: 'tcp://squireshand:jasonm23@localhost/squireshand'
+	},
 	
 	local: {
 		mode: 'local',

@@ -1,13 +1,13 @@
 var IAuthRepository = require('../../abstract/repositories/IAuthRepository'),
     userModel = new(require("../../../models/UserModel")),
-	DB = require("../../../data/db"),
+	DB = require("../../../data/db_pg"),
     self;
 
 
 var AuthRepository  = function() {
 	self = this;
-	DB.db(function(something, connection) {
-		self.dbc = connection;
+	DB.db(function(something, client) {
+		self.dbc = client;
 		self.model = userModel;
 	});
 };

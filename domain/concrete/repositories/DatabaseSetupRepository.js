@@ -1,12 +1,12 @@
 var IDatabaseSetupRepository = require('../../abstract/repositories/IDatabaseSetupRepository');
-var DB = require("../../../data/db");
+var DB = require("../../../data/db_pg");
 
 var self;
 
 var DatabaseSetupRepository  = function() {
 	self = this;
-	DB.db(function(something, connection) {
-		self.dbc = connection;
+	DB.db(function(something, client) {
+		self.dbc = client;
 	});
 };
 

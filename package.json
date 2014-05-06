@@ -2,6 +2,7 @@
     "name": "My_MVC_Framework",
 	"author": "Jason McBride",
     "description": "MVC Framework with Repository Pattern",
+	"main": "app.js",
     "version": "0.0.1",
     "private": true,
     "dependencies": 
@@ -21,6 +22,12 @@
       "mssql": "~0.5.3",
       "redis": "~0.10.1",
       "jasmine-node": "~1.14.3",
-      "node-minify": "~0.10.3"
+      "node-minify": "~0.10.3",
+	  "debug": "~0.7.4",
+	  "mocha-cakes": "~0.9.0",
+	  "mocha": "~1.18.2",
+	  "should": "~3.3.1",
+	  "zombie": "~2.0.0",
+	  "pg": "~3.0.3"
     }
 }

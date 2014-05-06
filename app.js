@@ -19,10 +19,11 @@ var express 		= require('express'),
 	session			= require('express-session'),
 	errorHandler	= require('errorhandler');
 
+var routes 			= require('./routes');
+
   // link controllers
 	Admin = require('./controllers/Admin'),
   	Post = require('./controllers/Post'),
-	Home = require('./controllers/Home'),
   	Account = require('./controllers/Account'),
   	Setup = require('./controllers/Setup');
 
@@ -59,6 +60,9 @@ if ('development' == app.get('env')) {
     });
 }
 
+app.use('/', routes);
+app.use('/users', routes);
+
 app.all('/admin*', function(req, res, next) {
 	Admin.Index(req, res, next);
 });
@@ -73,10 +77,6 @@ app.all('/post/insert', function(req, res, next) {
 
 app.all('/setup/database/createtables*', function(req, res, next) {
 	Setup.createTables(req, res, next);
-});
-
-app.all('/', function (req, res, next) {
-    Home.index(req, res, next);
 });
 
 if ('production' == app.get('env')) {
