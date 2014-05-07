@@ -9,7 +9,7 @@ module.exports = HomeController.extend({
 	index: function(req, res, next) {
 
 		var view = new View(res, 'home');
-		console.log(req.user);
+
 		view.render({
 			title: 'Home',
 			user: req.user == null ? null : {
