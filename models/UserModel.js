@@ -5,11 +5,13 @@ var Model = require("./Base"),
 	
 var UserModel = model.extend({
   
-	 User: function(user_id,username, validate_function) {
-     this.user_id  = user_id;
-     this.username = username;
-     this.status     = status;
-     this.validate = validate_function;
+  User: function(user_id, name, gender, profile_url, validate_function) {
+     this.user_id  		= user_id;
+     this.name 	   		= name;
+	 this.gender   		= gender;
+	 this.profile_url 	= profile_url;
+     this.status   		= status;
+     this.validate 		= validate_function;
   },
 	
   from_deliminited_string: function(string) {

@@ -2,7 +2,12 @@ var config = {
 	pg: {
 		mode: 'local',
 		port: 3200,
-		connString: 'tcp://squireshand:jasonm23@localhost/squireshand'
+		connString: 'tcp://squireshand:jasonm23@localhost/squireshand',
+		facebookSettings: {
+			app_id: '657144677672226',
+			secret_key: '5185b1eb90c8cf1db5563feaf4aab2d6',
+			callback_url: 'http://localhost:3200/login/facebook_callback'
+		}
 	},
 	
 	local: {

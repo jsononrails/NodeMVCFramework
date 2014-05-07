@@ -17,6 +17,8 @@
       "cookie-parser": "~1.0.1",
       "express-session": "~x",
 	  "errorhandler": "~x",
+	  "passport": "~0.2.0",
+	  "passport-facebook": "~1.0.3",
 	  "underscore": "~1.6",
       "mysql": "~2.2.0",
       "mssql": "~0.5.3",

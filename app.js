@@ -17,18 +17,11 @@ var express 		= require('express'),
     methodOverride 	= require('method-override'),
 	cookieParser 	= require('cookie-parser'),
 	session			= require('express-session'),
-	errorHandler	= require('errorhandler');
+	errorHandler	= require('errorhandler'),
+	passport		= require('passport'),
+	routes 			= require('./routes');
 
-var routes 			= require('./routes');
-
-  // link controllers
-	Admin = require('./controllers/Admin'),
-  	Post = require('./controllers/Post'),
-  	Account = require('./controllers/Account'),
-  	Setup = require('./controllers/Setup');
-
-// all environments
-// app.set('port', process.env.PORT || 3000);
+// app settings
 app.set('views', __dirname + '/views');
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -38,9 +31,14 @@ app.use(bodyParser());
 app.use(methodOverride());
 app.use(cookieParser('mvc-framework'));
 
+// session settings
 app.use(session({
   secret: 'gtw-secret-key'
 }));
+
+// setup passport for facebook auth
+app.use(passport.initialize());
+app.use(passport.session());
 
 // flash messages
 app.use(function(req, res, next) {
@@ -48,6 +46,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+// set public static directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
@@ -60,20 +59,10 @@ if ('development' == app.get('env')) {
     });
 }
 
+// setup routes 
 app.use('/', routes);
 app.use('/users', routes);
-
-app.all('/admin*', function(req, res, next) {
-	Admin.Index(req, res, next);
-});
-
-app.all('/account/signup', function(req, res, next) {
-  Account.signup(req, res, next);
-});
-
-app.all('/post/insert', function(req, res, next) {
-  Post.insert(req, res, next);
-});
+app.use('/login/facebook', routes);
 
 app.all('/setup/database/createtables*', function(req, res, next) {
 	Setup.createTables(req, res, next);

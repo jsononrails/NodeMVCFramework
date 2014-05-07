@@ -7,25 +7,17 @@ module.exports = HomeController.extend({
   
   // index action for home
 	index: function(req, res, next) {
-		var self = this;
+
 		var view = new View(res, 'home');
-		var service = new Service();
-		var result = null;
-	
-	service.getUsers(function(err, usersViewModel) {
-			if(!err) {
-				view.render({
-					title: 'Home',
-					users: usersViewModel
-				});
+		console.log(req.user);
+		view.render({
+			title: 'Home',
+			user: req.user == null ? null : {
+					userID: req.user.id,
+					name: 	 req.user.displayName,
+					gender:  req.user.gender,
+					profileUrl: req.user.profileUrl
 			}
-    		else {
-        		view.render({
-          			title: 'Home - Error',
-          			error: err,
-          			content: null
-        		});
-    		}
 		});
 	},
 	

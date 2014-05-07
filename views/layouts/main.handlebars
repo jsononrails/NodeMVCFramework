@@ -6,7 +6,8 @@
 </head>
 
 <body>
-<a href="/account/login">Login</a> | <a href="/account/signup">Sign Up</a>
+<a href="/login/facebook">Sign in with Facebook</a>
+<a href="/logout">Logout</a>
     <h1>{{ title }}</h1>
 	{{#if messages}}
 	<div class="display-error">
@@ -16,11 +17,15 @@
     	{{/messages}}
   	</div>
 	{{/if}}
-	<ul>
-		{{#users}}  
-	 		<li>Id: {{ user_id }}, Username: {{ username }} </li>
-	    {{/users}}
-	</ul>	
+	<p>
+		UserID: {{user.userID}}
+		<br>
+		Name: {{user.name}}
+		<br>
+		Gender: {{user.gender}}
+		<br>
+		Profile Url: <a href="{{user.profileUrl}}" target="_blank">Profile</a>
+		</p>
 	{{{ body }}}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </body>
