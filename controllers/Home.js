@@ -10,9 +10,8 @@ module.exports = HomeController.extend({
 
 		var view = new View(res, 'home');
 
-			view.render({
-			title: 'Home',
-			user: this.current_user(req)
+		view.render({
+			title: 'Home'
 		});
 	},
 	
@@ -22,8 +21,8 @@ module.exports = HomeController.extend({
 		var service = new Service();
 		var result = null;
 		
-    view.render({
-      title: 'Home Sweet Home + Users'});
-		
+    	view.render({
+      		title: 'Home Sweet Home + Users'
+		});
 	}
 });

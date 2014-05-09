@@ -4,10 +4,7 @@ var _ = require("underscore"),
 
 module.exports = {
 	name: "base",
-	
-//	requestHelper: new ReqHelper(),
-// 	authHelper: new AuthHelper(),
-  
+
 	extend: function(child) {
 			return _.extend({}, this, child);
 	},

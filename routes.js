@@ -53,6 +53,7 @@ router.get('/login/facebook_callback', passport.authenticate('facebook', {
 }));
 
 router.get('/login/success', function(req, res, next) {
+	// put code here to create user record if not existing
 	res.redirect('/');
 });
 
