@@ -59,6 +59,18 @@ if ('development' == app.get('env')) {
     });
 }
 
+// check auth before every action
+function check_auth(req, res, next) {
+	if(req.user || req.path === '/' || req.path ==='/login/facebook' || req.path === '/login/facebook_callback')
+	{
+		next();
+	} else {
+		res.redirect('/');
+	}
+}
+
+app.use(check_auth);
+
 // setup routes 
 app.use('/', routes);
 app.use('/users', routes);

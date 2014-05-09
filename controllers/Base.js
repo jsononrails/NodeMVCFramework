@@ -4,15 +4,29 @@ var _ = require("underscore"),
 
 module.exports = {
 	name: "base",
-	requestHelper: new ReqHelper(),
-  	authHelper: new AuthHelper(),
-	current_user: null,
+	
+//	requestHelper: new ReqHelper(),
+// 	authHelper: new AuthHelper(),
   
 	extend: function(child) {
 			return _.extend({}, this, child);
 	},
 	
 	run: function(req, res, next) {
-		current_user = req.user;
+	
+	},
+	
+	authorized: function(req, res) {
+		if(req.user === undefined)
+			res.redirect('/'); 
+	},
+	
+	current_user: function(req) {
+		return req.user == null ? null : {
+				userID: req.user.id,
+				name: 	 req.user.displayName,
+				gender:  req.user.gender,
+				profileUrl: req.user.profileUrl
+		}
 	}
 }

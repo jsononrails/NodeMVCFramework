@@ -32,8 +32,7 @@ var
 	});
 	
 var 
-	Home = require('./controllers/Home'),
-	Auth = require('./controllers/Auth');
+	Home = require('./controllers/Home');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

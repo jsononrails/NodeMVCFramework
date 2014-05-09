@@ -10,14 +10,9 @@ module.exports = HomeController.extend({
 
 		var view = new View(res, 'home');
 
-		view.render({
+			view.render({
 			title: 'Home',
-			user: req.user == null ? null : {
-					userID: req.user.id,
-					name: 	 req.user.displayName,
-					gender:  req.user.gender,
-					profileUrl: req.user.profileUrl
-			}
+			user: this.current_user(req)
 		});
 	},
 	
