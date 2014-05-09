@@ -1,4 +1,4 @@
-/* creates users table */
+-- Table: users
 
 DROP TABLE users;
 
