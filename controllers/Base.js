@@ -23,8 +23,8 @@ module.exports = {
 	
 	current_user: function(req) {
 		return req.user == null ? null : {
-				userID: req.user.id,
-				name: 	 req.user.displayName,
+				id: req.user.id,
+				displayName: 	 req.user.displayName,
 				gender:  req.user.gender,
 				profileUrl: req.user.profileUrl
 		}

@@ -48,11 +48,11 @@ router.get('/login/facebook', passport.authenticate('facebook'));
 
 router.get('/login/facebook_callback', passport.authenticate('facebook', {
   successRedirect: '/login/success',
-  failureRedirect: '/login/error'
+  failureRedirect: '/login/error',
+  session: true
 }));
 
 router.get('/login/success', function(req, res, next) {
-	//Auth.success(req, res, next);
 	res.redirect('/');
 });
 

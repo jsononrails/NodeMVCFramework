@@ -60,16 +60,22 @@ if ('development' == app.get('env')) {
 }
 
 // check auth before every action
-function check_auth(req, res, next) {
+app.use(function(req, res, next) {
 	if(req.user || req.path === '/' || req.path ==='/login/facebook' || req.path === '/login/facebook_callback')
 	{
 		next();
 	} else {
 		res.redirect('/');
 	}
-}
+});
 
-app.use(check_auth);
+// middleware to query user is authenticated
+// in views etc.
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  res.locals.isAuthenticated = req.user != null;
+  next();
+});
 
 // setup routes 
 app.use('/', routes);

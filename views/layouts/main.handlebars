@@ -7,7 +7,7 @@
 
 <body>
 	
-{{#if user}}
+{{#if isAuthenticated}}
 	<a href="/logout">Logout</a>
 {{else}}
 	<a href="/login/facebook">Sign in with Facebook</a>
@@ -23,15 +23,15 @@
   	</div>
 	{{/if}}
 	
-	{{#if user}}
+	{{#if isAuthenticated}}
 		<p>
-			UserID: {{user.userID}}
+			UserID: {{currentUser.id}}
 			<br>
-			Name: {{user.name}}
+			Name: {{currentUser.displayName}}
 			<br>
-			Gender: {{user.gender}}
+			Gender: {{currentUser.gender}}
 			<br>
-			Profile Url: <a href="{{user.profileUrl}}" target="_blank">Profile</a>
+			Profile Url: <a href="{{currentUser.profileUrl}}" target="_blank">Profile</a>
 		</p>
 	{{/if}}
 	
